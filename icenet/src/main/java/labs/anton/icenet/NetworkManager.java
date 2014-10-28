@@ -136,7 +136,7 @@ public final class NetworkManager {
             case JSONOBJECT:
                 if (method == Request.Method.POST)
                     if (bodyRequest == null)
-                        throw new IllegalArgumentException("body request url must not be null.");
+                        throw new IllegalArgumentException("body request must not be null.");
 
                 fromJsonObject(headers, bodyRequest, requestTag, callback);
                 break;
