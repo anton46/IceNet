@@ -83,3 +83,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+=====
+This library already on
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-IceNet-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1054)
