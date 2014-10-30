@@ -69,6 +69,10 @@ IceNet.connect()
                 .execute(REQUEST_TAG, callback);
 ```
 
+**Put this script for Android 4.4.4 (Kitkat) and older `uses-sdk`**
+```xml
+<uses-sdk tools:node="replace"/>
+```
 License
 =======
 
