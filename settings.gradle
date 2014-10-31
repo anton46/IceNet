@@ -1,1 +1,1 @@
-include ':icenet'
+include ':icenet', ':sample'
