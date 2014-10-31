@@ -10,14 +10,14 @@ Usage
 
 **Gradle**
 ```gradle
-compile 'com.anton46:IceNet:1.0.1'
+compile 'com.anton46:IceNet:1.0.2'
 ````
 **Maven**
 ```xml
 <dependency>
     <groupId>com.anton46</groupId>
     <artifactId>IceNet</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ````
 
@@ -68,6 +68,17 @@ IceNet.connect()
                 .mappingInto(PostResponse.class)
                 .execute(REQUEST_TAG, callback);
 ```
+
+**STRING REQUEST (NEW)**
+```java
+IceNet.connect()
+                .createRequest()
+                .get()
+                .pathUrl("/string")
+                .fromString()
+                .execute("REQUEST_TAG", callback);
+```
+
 
 **Put this script for Android 4.4.4 (Kitkat) and older `uses-sdk`**
 ```xml
