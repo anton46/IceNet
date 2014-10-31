@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by anton on 10/15/14.
  */
-public class RequestError extends Exception {
+public final class RequestError {
     public final static int REQUEST_RESPONSE_OK = 200;
     public final static int REQUEST_RESPONSE_CREATED = 201;
     public final static int REQUEST_RESPONSE_ACCEPTED = 202;

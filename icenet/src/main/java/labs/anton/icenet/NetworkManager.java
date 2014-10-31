@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,7 +28,8 @@ public final class NetworkManager {
 
     public enum RESULT {
         JSONOBJECT,
-        JSONARRAY
+        JSONARRAY,
+        STRING
     }
 
     private final String baseUrl;
@@ -116,6 +118,31 @@ public final class NetworkManager {
         networkHelper.addToRequestQueue(request, requestTag);
     }
 
+    private void fromString(final Map<String, String> headers, String requestTag, final RequestCallback requestCallback) {
+        StringRequest request = new StringRequest(getUrlConnection(pathUrl), new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                requestCallback.onRequestSuccess(s);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (requestCallback != null) {
+                    NetworkResponse response = error.networkResponse;
+                    if (response != null)
+                        requestCallback.onRequestError(new RequestError(response));
+                }
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return headers != null ? headers : super.getHeaders();
+            }
+        };
+
+        networkHelper.addToRequestQueue(request, requestTag);
+    }
+
     public void execute(String requestTag, RequestCallback callback) {
         if (resultType == null) {
             throw new IllegalArgumentException("result type must not be null.");
@@ -139,6 +166,9 @@ public final class NetworkManager {
                         throw new IllegalArgumentException("body request must not be null.");
 
                 fromJsonObject(headers, bodyRequest, requestTag, callback);
+                break;
+            case STRING:
+                fromString(headers, requestTag, callback);
                 break;
             default:
                 throw new IllegalArgumentException("response type not found");
@@ -199,6 +229,13 @@ public final class NetworkManager {
         }
 
         @Override
+        public NetworkManager fromString() {
+            this.resultType = RESULT.STRING;
+            this.targetType = TypeToken.get(String.class);
+            return new NetworkManager(this);
+        }
+
+        @Override
         public NetworkManager mappingInto(@NonNull Class classTarget) {
             this.targetType = TypeToken.get(classTarget);
             return new NetworkManager(this);
@@ -221,6 +258,8 @@ public final class NetworkManager {
         public INetworkManagerBuilder fromJsonObject();
 
         public INetworkManagerBuilder fromJsonArray();
+
+        public NetworkManager fromString();
 
         public NetworkManager mappingInto(@NonNull Class classTarget);
 
