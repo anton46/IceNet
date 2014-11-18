@@ -2,6 +2,8 @@ IceNet
 ======
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-IceNet-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1054)
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.anton46/IceNet/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
+
 **FAST, SIMPLE, EASY**  
 This library is an Android networking wrapper consisting of a combination of [Volley](https://github.com/mcxiaoke/android-volley), [OkHttp](https://github.com/square/okhttp) and [Gson](https://code.google.com/p/google-gson/). For more information see the [website](http://anton46.com/icenet-fast-simple-and-easy-networking-for-android/).
 
